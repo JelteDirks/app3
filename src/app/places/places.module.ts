@@ -10,15 +10,17 @@ import {PlacesPage} from './places.page';
 const routes: Routes = [
     {
         path: '',
-        component: PlacesPage
-    },
-    {
-        path: 'search',
-        loadChildren: './search/search.module#SearchPageModule'
-    },
-    {
-        path: 'offers',
-        loadChildren: './offers/offers.module#OffersPageModule'
+        component: PlacesPage,
+        children: [
+            {
+                path: 'search',
+                loadChildren: './search/search.module#SearchPageModule'
+            },
+            {
+                path: 'offers',
+                loadChildren: './offers/offers.module#OffersPageModule'
+            }
+        ]
     }
 ];
 
