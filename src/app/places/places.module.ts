@@ -10,6 +10,11 @@ import {PlacesPage} from './places.page';
 const routes: Routes = [
     {
         path: '',
+        pathMatch: 'full',
+        redirectTo: '/places/tab/search'
+    },
+    {
+        path: 'tab',
         component: PlacesPage,
         children: [
             {
