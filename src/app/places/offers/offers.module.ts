@@ -17,7 +17,7 @@ const routes: Routes = [
         loadChildren: './new-offer/new-offer.module#NewOfferPageModule'
     },
     {
-        path: 'edit/offerID',
+        path: 'edit/:offerID',
         loadChildren: './edit-offer/edit-offer.module#EditOfferPageModule'
     },
     {
