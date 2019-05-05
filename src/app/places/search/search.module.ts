@@ -1,4 +1,4 @@
-import {NgModule} from '@angular/core';
+import {NgModule, OnInit} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {FormsModule} from '@angular/forms';
 import {Routes, RouterModule} from '@angular/router';
@@ -6,6 +6,7 @@ import {Routes, RouterModule} from '@angular/router';
 import {IonicModule} from '@ionic/angular';
 
 import {SearchPage} from './search.page';
+import {Place, PlacesService} from '../places.service';
 
 const routes: Routes = [
     {
@@ -27,5 +28,14 @@ const routes: Routes = [
     ],
     declarations: [SearchPage]
 })
-export class SearchPageModule {
+export class SearchPageModule implements OnInit {
+
+    public places: Place[] = [];
+
+    constructor(private placesService: PlacesService) {
+    }
+
+    ngOnInit(): void {
+        this.places = this.placesService.places;
+    }
 }

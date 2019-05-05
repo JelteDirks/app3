@@ -5,7 +5,7 @@ import {Injectable} from '@angular/core';
 })
 export class PlacesService {
 
-    public places: Place[] = [
+    public internalPlaces: Place[] = [
         {
             id: '1',
             title: 'Geulle',
@@ -22,7 +22,8 @@ export class PlacesService {
         }
     ];
 
-    constructor() {
+    get places(): Place[] {
+        return [...this.internalPlaces];
     }
 }
 
