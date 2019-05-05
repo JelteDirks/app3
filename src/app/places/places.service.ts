@@ -27,6 +27,10 @@ export class PlacesService {
     get places(): Place[] {
         return [...this.internalPlaces];
     }
+
+    public getPlaceByID(id: string): Place {
+        return this.internalPlaces.find(p => p.id === id);
+    }
 }
 
 
