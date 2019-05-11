@@ -22,5 +22,9 @@
                 <p>{{place.description}}</p>
             </ion-col>
         </ion-row>
+        <ion-row>
+            <ion-button (click)="onBook()">Book {{place.title}}!</ion-button>
+            <ion-button (click)="onEdit()">Edit {{place.title}}</ion-button>
+        </ion-row>
     </ion-grid>
 </ion-content>
