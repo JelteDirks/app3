@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {Observable, Subject} from 'rxjs';
+import {Subject} from 'rxjs';
 
 @Injectable({
     providedIn: 'root'
@@ -7,7 +7,8 @@ import {Observable, Subject} from 'rxjs';
 export class AuthService {
 
     public user: Subject<User> = new Subject();
-    private _user: User = null;
+    // tslint:disable-next-line:variable-name
+    private _usr: User = null;
 
     constructor() {
 
@@ -16,20 +17,24 @@ export class AuthService {
     login(credentials): User {
         const {name, email} = credentials;
 
-        this._user = {
+        this._usr = {
             name,
             email,
             id: '123'
         };
 
-        this.user.next({...this._user});
+        this.user.next({...this._usr});
 
-        return {...this._user};
+        return {...this._usr};
     }
 
     logout() {
-        this._user = null;
+        this._usr = null;
         this.user.next(null);
+    }
+
+    get usr() {
+        return this._usr;
     }
 }
 
