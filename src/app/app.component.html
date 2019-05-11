@@ -2,7 +2,7 @@
     <ion-menu side="start">
         <ion-header>
             <ion-toolbar>
-                <ion-title>Places</ion-title>
+                <ion-title>Places {{isLoggedIn}}</ion-title>
             </ion-toolbar>
         </ion-header>
 
@@ -16,10 +16,18 @@
                     <ion-icon name="search"></ion-icon>
                     <ion-label>Search</ion-label>
                 </ion-item>
-                <ion-item lines="none">
-                    <ion-icon name="contact"></ion-icon>
-                    <ion-label>Login</ion-label>
-                </ion-item>
+                <ion-menu-toggle>
+                    <ion-item *ngIf="!isLoggedIn" lines="none" button routerLink="/auth">
+                        <ion-icon name="contact"></ion-icon>
+                        <ion-label>Login</ion-label>
+                    </ion-item>
+                </ion-menu-toggle>
+                <ion-menu-toggle>
+                    <ion-item *ngIf="isLoggedIn" lines="none" button (click)="onLogout()">
+                        <ion-icon name="contact"></ion-icon>
+                        <ion-label>Logout</ion-label>
+                    </ion-item>
+                </ion-menu-toggle>
             </ion-list>
         </ion-content>
     </ion-menu>
