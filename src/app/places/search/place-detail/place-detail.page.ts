@@ -1,7 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {Place, PlacesService} from '../../places.service';
 import {ActivatedRoute} from '@angular/router';
-import {NavController} from '@ionic/angular';
+import {ModalController, NavController} from '@ionic/angular';
+import {EditPlaceComponent} from '../edit-place/edit-place.component';
 
 @Component({
     selector: 'app-place-detail',
@@ -14,7 +15,8 @@ export class PlaceDetailPage implements OnInit {
 
     constructor(private placesService: PlacesService,
                 private activatedRoute: ActivatedRoute,
-                private navController: NavController) {
+                private navController: NavController,
+                private modController: ModalController) {
     }
 
     ngOnInit() {
@@ -28,7 +30,17 @@ export class PlaceDetailPage implements OnInit {
     }
 
     onEdit() {
-        this.navController.navigateForward(['/places/tab/offers/edit', this.place.id]);
+        this.modController.create({
+            component: EditPlaceComponent, componentProps: {
+                place: {...this.place}
+            }
+        }).then(editModal => {
+            editModal.present();
+            return editModal.onDidDismiss();
+        }).then(dismissData => {
+            this.placesService.setPlaceByID(dismissData.data.id, dismissData.data);
+            this.place = dismissData.data;
+        });
     }
 
 }

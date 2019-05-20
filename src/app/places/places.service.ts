@@ -31,6 +31,12 @@ export class PlacesService {
     public getPlaceByID(id: string): Place {
         return this.internalPlaces.find(p => p.id === id);
     }
+
+    public setPlaceByID(id: string, newPlace: Place): void {
+        this.internalPlaces = this.internalPlaces.map(place => {
+            return place.id === id ? newPlace : place;
+        });
+    }
 }
 
 
